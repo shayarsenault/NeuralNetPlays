@@ -1,10 +1,6 @@
-from window import Window
-from entities import Player, Base, Enemy
 import pygame
-import time
-
-
-pygame.init()
+from random import randrange
+from window import Window
 
 # Color Declaration
 BLACK = (0,0,0)
@@ -14,41 +10,48 @@ GREEN = (0,255,0)
 BLUE = (0,0,255)
 
 
-running = True
-fps = 60
+class Base(Window):
+	def __init__(self, win):
+		self.x = 0
+		self.y = win.height/2+25
+	def update(self, win):
+		pygame.draw.rect(win.display, BLUE, (self.x, self.y, win.width, 10))
+		
 
-window = Window(800,600)
-base = Base(window)
-player1 = Player(window)
-enemy = Enemy(window)
+class Player(Base):
+	def __init__(self, win):
+		self.x = 75
+		self.y = win.height/2
+		self.yc = 0 
 
-clock = pygame.time.Clock()
+		self.width = 25
+		self.height = 25
 
-while running:
+	def update(self, win):
+		pygame.draw.rect(win.display, BLACK, (self.x, self.y, self.width, self.height))
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			running = False
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_UP and player1.y+player1.height == base.y:
-				player1.move()
-	if player1.y == 100:
-		player1.yc = 10
+	def move(self):
+		self.yc = -10
 
-	elif player1.y+25 == base.y and event.type == pygame.KEYUP and event.type != pygame.KEYDOWN:
-		player1.yc = 0
-			
-	player1.y += player1.yc
+class Enemy(Window):
+	def __init__(self, win):
+		self.color = RED
+		self.width = randrange(25, 150)
+		self.height = 25
+		self.x = win.width - self.width
+		self.y = win.height/2
+
+		self.speed = 10
+
+		self.enemies = []
+
+	def update(self, win):
+		pygame.draw.rect(win.display, self.color, (self.x, self.y, self.width, self.height))
+		
+
+	
+		
 
 
 
-	window.display.fill(WHITE)
-	player1.update(window)
-	base.update(window)
-	enemy.update(window)
-
-
-	pygame.display.update()
-	clock.tick(fps)
-				
 

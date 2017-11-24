@@ -48,8 +48,8 @@ class Enemy(Window):
 	def update(self, win):
 		pygame.draw.rect(win.display, self.color, (self.x, self.y, self.width, self.height))
 		
-
-	
+	def move_and_gen(self):
+			
 		
 
 
