@@ -10,12 +10,12 @@ BLUE = (0,0,255)
 
 
 class Window:
-	def __init__(self, WIN_W, WIN_H):
+	def __init__(self, width, height):
 		
-		self.WIN_H = WIN_H
-		self.WIN_W = WIN_W
+		self.height = height
+		self.width = width
 		
-		self.display = pygame.display.set_mode((self.WIN_W, self.WIN_H))
+		self.display = pygame.display.set_mode((self.width, self.height))
 		
 		pygame.display.set_caption('A neural net')
 		
