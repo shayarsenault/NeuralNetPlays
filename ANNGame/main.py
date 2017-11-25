@@ -2,8 +2,10 @@
 from window import Window
 from entities import Player, Base, Enemy
 import pygame
+from pygame.locals import *
 import time
 from random import *
+from threading import *
 
 pygame.init()
 
@@ -39,12 +41,13 @@ for count in range(10):
 	rects.append(enemy)
 
 while running:
-
+	# TODO: FIX PLAYER GLITCHING THROUGH BASE
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			running = False
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP and player1.y+player1.height == base.y:
+
 				player1.move()
 	if player1.y == 100:
 		player1.yc = 10
@@ -57,11 +60,11 @@ while running:
 	for r in rects:
 		enemy.x -= enemy.speed
 		if enemy.x == 0:
-			enemy.speed = 0
-			r.update(window)
-		elif enemy.x == player1.y and player1.x+25:
+			enemy.generate_new(window)
+		elif enemy.x == player1.x+25 and enemy.y == player1.y:
 			enemy.speed = 0 
 			window.game_over()
+			print(enemy.x, enemy.y, player1.x, player1.y)
 
 	pygame.display.update()
 
