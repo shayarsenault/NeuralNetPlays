@@ -3,6 +3,7 @@ from pygame.locals import *
 from random import randrange
 from window import Window
 
+
 # Color Declaration
 BLACK = (0,0,0)
 WHITE = (255, 255, 255)
@@ -43,17 +44,16 @@ class Enemy(Window):
 		self.size = size
 		self.x = win.width
 		self.y = win.height/2
-		self.speed = 5
+		self.speed = 2
 
 		self.enemies = []
 
 	def update(self, win):
 		pygame.draw.rect(win.display, self.color, Rect((self.x, self.y), self.size))
+
+	def generate_new(self, win):
+		self.x = win.width
+		self.y = win.height/2
+
 		
-	def move_and_gen(self):
-		pass
-		
-
-
-
 
