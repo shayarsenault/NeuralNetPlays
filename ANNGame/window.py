@@ -24,6 +24,7 @@ class Window:
 		pygame.display.set_caption('A neural net')
 		
 		pygame.display.update()
+		
 	def game_over(self):
 
 		self.display.blit(self.gameOverText, [self.width/2-25, self.height/2-100])
