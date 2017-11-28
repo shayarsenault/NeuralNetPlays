@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from random import randrange
 from window import Window
+from random import *
 
 
 # Color Declaration
@@ -29,7 +30,8 @@ class Player(Base):
 		self.width = 25
 		self.height = 25
 
-		self.area = self.width * self.height
+		self.jump_threshold = 100
+
 
 	def update(self, win):
 		pygame.draw.rect(win.display, BLACK, (self.x, self.y, self.width, self.height))
@@ -45,15 +47,18 @@ class Enemy(Window):
 		self.x = win.width
 		self.y = win.height/2
 		self.speed = 2
-
+		self.new_size = (randint(25, 150), 25)
 		self.enemies = []
 
 	def update(self, win):
 		pygame.draw.rect(win.display, self.color, Rect((self.x, self.y), self.size))
 
-	def generate_new(self, win):
+	def generate_new(self, win, size):
 		self.x = win.width
 		self.y = win.height/2
+
+		self.size = size
+		
 
 		
 
