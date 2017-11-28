@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-
+import time
 
 # Color Declaration
 BLACK = (0,0,0)
@@ -26,5 +26,6 @@ class Window:
 		pygame.display.update()
 		
 	def game_over(self):
-
 		self.display.blit(self.gameOverText, [self.width/2-25, self.height/2-100])
+		
+
