@@ -42,28 +42,24 @@ for count in range(10):
 	rects.append(enemy)
 
 while running:
-	# TODO: FIX PLAYER GLITCHING THROUGH BASE ***
+	# TODO: FIX PLAYER GLITCHING THROUGH BASE *
 	# TODO: FIX ENEMY SPAWN OBJECT
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			running = False
 		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_UP and player1.y+player1.height == base.y:
+			if event.key == pygame.K_UP and player1.yc != 10:
 				player1.move()
 
-				if player1.y+25 != base.y:
-					player1.y += player1.yc
-				elif player1.y+25 == base.y:
-					player1.yc = 0
+	
 
 	# Determines if Player has collided with the base, if true, then the player stays of then
-	if player1.y == player1.jump_threshold:
+	if player1.y == player1.jump_threshold :		
 		player1.yc = 10
-	elif player1.y+25 == base.y:
-		if event.type == pygame.KEYDOWN:
-			player1.yc = 0
-	
-	
+	elif player1.yc == 10 and player1.y+player1.height == base.y:
+		player1.yc = 0
+
+	player1.y += player1.yc
 
 	for r in rects:
 		enemy.x -= enemy.speed
@@ -72,7 +68,7 @@ while running:
 		elif enemy.x == player1.x+player1.width and enemy.y == player1.y:
 			enemy.speed = 0 
 			window.game_over()
-			exit()
+			
 
 			
 	pygame.display.update()
