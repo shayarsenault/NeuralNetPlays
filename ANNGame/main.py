@@ -18,23 +18,19 @@ GREEN = (0,255,0)
 BLUE = (0,0,255)
 
 
+rects = []
+score = 0
+
 running = True
 fps = 30
 
 window = Window(800,600)
 base = Base(window)
 player1 = Player(window)
+
 font = pygame.font.SysFont(None, 30)
 
-
 clock = pygame.time.Clock()
-
-rects = []
-
-
-score = 0
-
-
 
 for count in range(10):
 	color = (randint(0,255), randint(0,255), randint(0,255))    
