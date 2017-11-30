@@ -46,8 +46,7 @@ class Enemy(Window):
 		self.size = size
 		self.x = win.width
 		self.y = win.height/2
-		self.speed = 2
-		self.new_size = (randint(25, 150), 25)
+		self.speed = randint(1, 3)
 		self.enemies = []
 
 	def update(self, win):
