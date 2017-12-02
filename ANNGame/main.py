@@ -24,7 +24,7 @@ score = 0
 running = True
 fps = 30
 
-window = Window(800,600)
+window = Window(600,300)
 base = Base(window)
 player1 = Player(window)
 
