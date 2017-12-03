@@ -1,6 +1,7 @@
 
 from window import Window
 from entities import Player, Base, Enemy
+
 import pygame
 from pygame.locals import *
 import time
@@ -58,18 +59,17 @@ while running:
 
 # Enemy spawn logic
 	for r in rects:
-		sx = randint(25, 200)
-		size = (sx, 25)
+		size = (randint(25, 200), 25)
 		enemy.x -= enemy.speed
-	if enemy.x == 0:
+	if enemy.x < 0:
 		enemy.generate_new(window, size)
-		print(sx)
 		score += 1
-	
-	elif enemy.x == player1.x+player1.width and enemy.y == player1.y:
+	elif enemy.x == player1.x+25 and enemy.y == player1.y:
 		enemy.speed = 0
 		window.game_over()
+		print('game')
 
+	print('Enemy X ' + str(enemy.x) + ', Player X ' + str(player1.x))
 	score_txt = font.render('Score: ' + str(score), False, (0,0,0))
 
 	window.display.blit(score_txt, [10, 10])
@@ -83,6 +83,8 @@ while running:
 	enemy.update(window)
 
 	clock.tick(fps)	
+
+	
 
 
 

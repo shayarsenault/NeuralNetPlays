@@ -23,14 +23,14 @@ class Base(Window):
 
 class Player(Base):
 	def __init__(self, win):
-		self.x = 75
+		self.x = 35
 		self.y = win.height/2
 		self.yc = 0 
 
 		self.width = 25
 		self.height = 25
 
-		self.jump_threshold = 100
+		self.jump_threshold = 10
 
 
 	def update(self, win):
@@ -46,8 +46,8 @@ class Enemy(Window):
 		self.size = size
 		self.x = win.width
 		self.y = win.height/2
-		self.speed = randint(1, 3)
-		self.enemies = []
+
+		self.speed = 1
 
 	def update(self, win):
 		pygame.draw.rect(win.display, self.color, Rect((self.x, self.y), self.size))
